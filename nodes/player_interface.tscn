@@ -1,0 +1,29 @@
+[gd_scene format=3 uid="uid://bp1dm7dhirfys"]
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_wgdwj"]
+
+[node name="PlayerInterface" type="Control" unique_id=775567438]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="CrosshairCenter" type="Control" parent="." unique_id=1491549110]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -8.0
+offset_top = -8.0
+offset_right = 8.0
+offset_bottom = 8.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Crosshair" type="Sprite2D" parent="CrosshairCenter" unique_id=182533851]
+scale = Vector2(5, 5)
+texture = SubResource("CanvasTexture_wgdwj")
