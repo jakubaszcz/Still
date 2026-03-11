@@ -22,7 +22,7 @@ func _input(event):
 			Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 
 func _physics_process(_delta: float) -> void:
-	var input: Vector2 = Input.get_vector("move_left", "move_right", "move_forward", "move_back")
+	var input: Vector2 = Input.get_vector("move_left", "move_right", "move_forward", "move_backward")
 	var movement_dir: Vector3 = transform.basis * Vector3(input.x, 0, input.y)
 		
 	velocity.x = movement_dir.x * speed
