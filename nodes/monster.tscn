@@ -1,8 +1,11 @@
-[gd_scene format=3 uid="uid://cj1e8mf4dcjmv"]
+[gd_scene format=3 uid="uid://1b56ietgkpoa"]
+
+[ext_resource type="Script" uid="uid://bd6b6iyayegpd" path="res://scripts/monster.gd" id="1_srrws"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_hbfoo"]
 
 [node name="Monster" type="CharacterBody3D" unique_id=1563080593]
+script = ExtResource("1_srrws")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=462151167]
 shape = SubResource("CapsuleShape3D_hbfoo")
