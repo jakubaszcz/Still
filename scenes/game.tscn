@@ -3,22 +3,13 @@
 [ext_resource type="PackedScene" uid="uid://ckudr8chj1kgo" path="res://nodes/player.tscn" id="1_uwrxv"]
 [ext_resource type="PackedScene" uid="uid://1b56ietgkpoa" path="res://nodes/monster.tscn" id="2_yqjtg"]
 
-[sub_resource type="NavigationMesh" id="NavigationMesh_yqjtg"]
-
 [node name="Game" type="Node3D" unique_id=1630869369]
 
 [node name="CSGBox3D" type="CSGBox3D" parent="." unique_id=214294106]
 size = Vector3(10, 1, 10)
-
-[node name="NavigationRegion3D" type="NavigationRegion3D" parent="CSGBox3D" unique_id=1767996030]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, -1)
-navigation_mesh = SubResource("NavigationMesh_yqjtg")
 
 [node name="Player" parent="." unique_id=1420670030 instance=ExtResource("1_uwrxv")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.4419842, 1.9926505, -1.772377)
 
 [node name="Monster" parent="." unique_id=1563080593 instance=ExtResource("2_yqjtg")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.6950197, 1.6629984, 4.3988147)
-
-[node name="NavigationAgent3D" type="NavigationAgent3D" parent="Monster" unique_id=496528796]
-avoidance_enabled = true
