@@ -11,6 +11,7 @@ var camera_rotation_x: float = 0.0
 func _ready():
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 
+
 func _input(event):
 	if event is InputEventMouseMotion and Input.get_mouse_mode() == Input.MOUSE_MODE_CAPTURED:
 		rotate_y(-event.relative.x * sensivity)
@@ -28,8 +29,13 @@ func _physics_process(_delta: float) -> void:
 	velocity.x = movement_dir.x * speed
 	velocity.z = movement_dir.z * speed
 	
-	if input:
-		var event: NoiseEvent = NoiseEvent.new(position, 0.1, NoiseEvent.NoiseType.FOOTSTEP)
-		NoiseManager.noise_detected.emit(event)
-	
 	move_and_slide()
+
+func _on_area_3d_body_entered(body: Node3D) -> void:
+	if body.is_in_group("monster"):
+		print("Warning ! The monster has entered the zone.")
+
+
+func _on_area_3d_body_exited(body: Node3D) -> void:
+	if body.is_in_group("monster"):
+		print("The monster has left the zone.")
