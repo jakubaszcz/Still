@@ -28,4 +28,8 @@ func _physics_process(_delta: float) -> void:
 	velocity.x = movement_dir.x * speed
 	velocity.z = movement_dir.z * speed
 	
+	if input:
+		var event = NoiseEvent.new(position, 0.1, NoiseEvent.NoiseType.FOOTSTEP)
+		NoiseManager.noise_detected.emit(event)
+	
 	move_and_slide()
