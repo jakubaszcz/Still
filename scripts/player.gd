@@ -21,12 +21,16 @@ func _mouse_movement(event):
 func _input(event):
 	_mouse_movement(event)
 
-func _physics_process(_delta: float) -> void:
+func _movement():
 	var input: Vector2 = Input.get_vector("move_left", "move_right", "move_forward", "move_backward")
 	var movement_dir: Vector3 = transform.basis * Vector3(input.x, 0, input.y)
 		
 	velocity.x = movement_dir.x * speed
 	velocity.z = movement_dir.z * speed
+
+func _physics_process(_delta: float) -> void:
+	
+	_movement()
 	
 	move_and_slide()
 
