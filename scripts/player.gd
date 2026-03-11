@@ -4,6 +4,8 @@ extends CharacterBody3D
 @onready var body: CSGCylinder3D = $Body
 @onready var sensivity: float = 0.002
 @onready var camera: Camera3D = $Camera3D
+@onready var ray: RayCast3D = $Camera3D/RayCast3D
+
 
 var target_velocity: Vector3 = Vector3.ZERO
 var camera_rotation_x: float = 0.0
@@ -28,9 +30,23 @@ func _movement():
 	velocity.x = movement_dir.x * speed
 	velocity.z = movement_dir.z * speed
 
+func _pick_item():
+	if Input.is_action_just_pressed("left_hand") or Input.is_action_just_pressed("right_hand"):
+		var item = _raycast_item()
+		if item:
+			item._drop()
+
+func _raycast_item() -> Item:
+	if ray.is_colliding():
+		var hit: Object = ray.get_collider()
+		if hit is Item:
+			return hit
+	return null
+
 func _physics_process(_delta: float) -> void:
 	
 	_movement()
+	_pick_item()
 	
 	move_and_slide()
 
