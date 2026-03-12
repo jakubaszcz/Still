@@ -6,6 +6,17 @@ extends CharacterBody3D
 @onready var camera: Camera3D = $Camera3D
 @onready var ray: RayCast3D = $Camera3D/RayCast3D
 
+enum HandState { HOLD, EMPTY }
+enum HandType { LEFT, RIGHT }
+
+@onready var left_hand_position : Vector3 = Vector3(-1.0, -0.5, -1)
+@onready var left_hand_state : HandState = HandState.EMPTY
+@onready var right_hand_position : Vector3 = Vector3(1.0, -0.5, -1)
+@onready var right_hand_state : HandState = HandState.EMPTY
+
+var left_hand_item : Item = null
+var right_hand_item : Item = null
+
 
 var target_velocity: Vector3 = Vector3.ZERO
 var camera_rotation_x: float = 0.0
@@ -33,8 +44,45 @@ func _movement():
 func _pick_item():
 	if Input.is_action_just_pressed("left_hand") or Input.is_action_just_pressed("right_hand"):
 		var item: Item = _raycast_item()
-		if item:
-			item._hold()
+		if Input.is_action_just_pressed("left_hand"):
+			_hand(HandType.LEFT, item)
+		elif Input.is_action_just_pressed("right_hand"):
+			_hand(HandType.RIGHT, item)
+			
+func _hand(hand : HandType, item : Item):
+		match hand:
+			HandType.LEFT:
+				_left_hand(item)
+			HandType.RIGHT:
+				_right_hand(item)
+
+func _left_hand(item : Item):
+	match left_hand_state:
+		HandState.HOLD:
+			if left_hand_item:
+				left_hand_item._drop(global_position + Vector3(0, 1, -1).rotated(Vector3.UP, rotation.y))
+				left_hand_item = null
+				left_hand_state = HandState.EMPTY
+		HandState.EMPTY:
+			if item:
+				left_hand_item = item
+				left_hand_item._hold(camera, left_hand_position)
+				left_hand_state = HandState.HOLD
+
+func _right_hand(item : Item):
+	match right_hand_state:
+		HandState.HOLD:
+			if right_hand_item:
+				right_hand_item._drop(global_position + Vector3(0, 1, -1).rotated(Vector3.UP, rotation.y))
+				right_hand_item = null
+				right_hand_state = HandState.EMPTY
+		HandState.EMPTY:
+			if item:
+				right_hand_item = item
+				right_hand_item._hold(camera, right_hand_position)
+				right_hand_state = HandState.HOLD
+	
+
 
 func _raycast_item() -> Item:
 	if ray.is_colliding():
