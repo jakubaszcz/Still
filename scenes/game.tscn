@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://c5ejdayrwpirr"]
 
 [ext_resource type="PackedScene" uid="uid://ckudr8chj1kgo" path="res://nodes/player.tscn" id="1_uwrxv"]
-[ext_resource type="PackedScene" uid="uid://1b56ietgkpoa" path="res://nodes/monster.tscn" id="2_yqjtg"]
+[ext_resource type="PackedScene" uid="uid://cj1e8mf4dcjmv" path="res://nodes/monster.tscn" id="2_yqjtg"]
 [ext_resource type="PackedScene" uid="uid://nym8ba6ktxc7" path="res://nodes/items/fuse.tscn" id="3_lnu2h"]
 
 [node name="Game" type="Node3D" unique_id=1630869369]
@@ -15,5 +15,5 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.4419842, 1.9926505, -1.772
 [node name="Monster" parent="." unique_id=1563080593 instance=ExtResource("2_yqjtg")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.6950197, 1.6629984, 4.3988147)
 
-[node name="Fuse" parent="." unique_id=983758703 instance=ExtResource("3_lnu2h")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.3900437, 1.0730283, 2.2950306)
+[node name="Fuse" parent="." unique_id=1921144796 instance=ExtResource("3_lnu2h")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.671547, 1.2467847, 2.51936)

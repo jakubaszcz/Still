@@ -32,9 +32,9 @@ func _movement():
 
 func _pick_item():
 	if Input.is_action_just_pressed("left_hand") or Input.is_action_just_pressed("right_hand"):
-		var item = _raycast_item()
+		var item: Item = _raycast_item()
 		if item:
-			item._drop()
+			item._hold()
 
 func _raycast_item() -> Item:
 	if ray.is_colliding():
