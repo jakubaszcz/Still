@@ -91,10 +91,13 @@ func _raycast_item() -> Item:
 			return hit
 	return null
 
-func _physics_process(_delta: float) -> void:
+func _physics_process(delta: float) -> void:
 	
 	_movement()
 	_pick_item()
+	
+	if not is_on_floor():
+		velocity += get_gravity() * delta
 	
 	move_and_slide()
 

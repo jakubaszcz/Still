@@ -11,3 +11,4 @@ script = ExtResource("1_srrws")
 shape = SubResource("CapsuleShape3D_hbfoo")
 
 [node name="CSGCylinder3D" type="CSGCylinder3D" parent="." unique_id=613063347]
+use_collision = true

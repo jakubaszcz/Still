@@ -3,18 +3,16 @@
 [ext_resource type="Script" uid="uid://bi17we1f34n16" path="res://scripts/player.gd" id="1_u63mc"]
 [ext_resource type="PackedScene" uid="uid://bp1dm7dhirfys" path="res://nodes/player_interface.tscn" id="2_bms3g"]
 
-[sub_resource type="CylinderShape3D" id="CylinderShape3D_1"]
-
 [sub_resource type="SphereShape3D" id="SphereShape3D_bms3g"]
 radius = 5.0
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_bms3g"]
 
 [node name="Player" type="CharacterBody3D" unique_id=1420670030]
 script = ExtResource("1_u63mc")
 
 [node name="Body" type="CSGCylinder3D" parent="." unique_id=520657104]
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=345722308]
-shape = SubResource("CylinderShape3D_1")
+use_collision = true
 
 [node name="Camera3D" type="Camera3D" parent="." unique_id=1813214702]
 
@@ -27,6 +25,9 @@ target_position = Vector3(0, 0, -3)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D" unique_id=1802160970]
 shape = SubResource("SphereShape3D_bms3g")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=493402708]
+shape = SubResource("CapsuleShape3D_bms3g")
 
 [connection signal="body_entered" from="Area3D" to="." method="_on_area_3d_body_entered"]
 [connection signal="body_exited" from="Area3D" to="." method="_on_area_3d_body_exited"]
