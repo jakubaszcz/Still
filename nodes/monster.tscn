@@ -4,11 +4,18 @@
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_hbfoo"]
 
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_srrws"]
+
 [node name="Monster" type="CharacterBody3D" unique_id=1563080593]
 script = ExtResource("1_srrws")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=462151167]
 shape = SubResource("CapsuleShape3D_hbfoo")
 
-[node name="CSGCylinder3D" type="CSGCylinder3D" parent="." unique_id=613063347]
-use_collision = true
+[node name="NavigationAgent3D" type="NavigationAgent3D" parent="." unique_id=605078738]
+debug_enabled = true
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=26484289]
+mesh = SubResource("CapsuleMesh_srrws")
+
+[connection signal="navigation_finished" from="NavigationAgent3D" to="." method="_on_navigation_agent_3d_navigation_finished"]
