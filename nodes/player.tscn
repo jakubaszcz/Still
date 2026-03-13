@@ -14,6 +14,12 @@ script = ExtResource("1_u63mc")
 [node name="Body" type="CSGCylinder3D" parent="." unique_id=520657104]
 use_collision = true
 
+[node name="OmniLight3D" type="OmniLight3D" parent="Body" unique_id=1377367238]
+light_energy = 5.0
+light_indirect_energy = 5.0
+light_volumetric_fog_energy = 5.0
+light_size = 0.8
+
 [node name="Camera3D" type="Camera3D" parent="." unique_id=1813214702]
 
 [node name="RayCast3D" type="RayCast3D" parent="Camera3D" unique_id=445571149]

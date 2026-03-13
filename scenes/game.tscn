@@ -5,8 +5,11 @@
 [ext_resource type="PackedScene" uid="uid://nym8ba6ktxc7" path="res://nodes/items/fuse.tscn" id="3_lnu2h"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_lnu2h"]
-sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
-ground_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
+sky_top_color = Color(0, 0, 0, 1)
+sky_horizon_color = Color(0, 0, 0, 1)
+sky_energy_multiplier = 53.95
+ground_bottom_color = Color(0, 0, 0, 1)
+ground_horizon_color = Color(0, 0, 0, 1)
 
 [sub_resource type="Sky" id="Sky_lbhrr"]
 sky_material = SubResource("ProceduralSkyMaterial_lnu2h")
@@ -61,3 +64,7 @@ size = Vector3(36, 15, 1)
 [node name="Wall4" type="CSGBox3D" parent="NavigationRegion3D/CSGBox3D" unique_id=2103767602]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -18, 6, 0)
 size = Vector3(36, 15, 1)
+
+[node name="CSGBox3D" type="CSGBox3D" parent="." unique_id=1906817324]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 10.15752, 0)
+size = Vector3(35, 1, 35)
