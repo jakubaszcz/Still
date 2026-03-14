@@ -3,6 +3,7 @@
 [ext_resource type="PackedScene" uid="uid://ckudr8chj1kgo" path="res://nodes/player.tscn" id="1_uwrxv"]
 [ext_resource type="PackedScene" uid="uid://1b56ietgkpoa" path="res://nodes/monster.tscn" id="2_yqjtg"]
 [ext_resource type="PackedScene" uid="uid://nym8ba6ktxc7" path="res://nodes/items/fuse.tscn" id="3_lnu2h"]
+[ext_resource type="PackedScene" uid="uid://c4jvx4glbgl2" path="res://nodes/door.tscn" id="4_lbhrr"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_lnu2h"]
 sky_top_color = Color(0, 0, 0, 1)
@@ -40,7 +41,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.4419842, 7.017948, -1.7723
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.6950197, 1.6629984, 4.3988147)
 
 [node name="Fuse" parent="." unique_id=1921144796 instance=ExtResource("3_lnu2h")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.671547, 1.2467847, 2.51936)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.2928991, 4.632543, 0.46152687)
 
 [node name="NavigationRegion3D" type="NavigationRegion3D" parent="." unique_id=1587314762]
 navigation_mesh = SubResource("NavigationMesh_lnu2h")
@@ -65,6 +66,9 @@ size = Vector3(36, 15, 1)
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -18, 6, 0)
 size = Vector3(36, 15, 1)
 
-[node name="CSGBox3D" type="CSGBox3D" parent="." unique_id=1906817324]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 10.15752, 0)
+[node name="Door" parent="." unique_id=645919801 instance=ExtResource("4_lbhrr")]
+transform = Transform3D(4, 0, 0, 0, 4, 0, 0, 0, 4, -1.0861063, 0.49999905, 17.118332)
+
+[node name="CSGBox3D" type="CSGBox3D" parent="." unique_id=1677295353]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 12.706871, 0)
 size = Vector3(35, 1, 35)

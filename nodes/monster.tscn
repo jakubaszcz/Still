@@ -1,7 +1,6 @@
 [gd_scene format=3 uid="uid://1b56ietgkpoa"]
 
 [ext_resource type="Script" uid="uid://bd6b6iyayegpd" path="res://scripts/monster.gd" id="1_srrws"]
-[ext_resource type="AudioStream" uid="uid://cfed680tptsix" path="res://sounds/footstep.mp3" id="2_ux2sb"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_hbfoo"]
 
@@ -18,9 +17,5 @@ debug_enabled = true
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=26484289]
 mesh = SubResource("CapsuleMesh_srrws")
-
-[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="." unique_id=773335660]
-stream = ExtResource("2_ux2sb")
-autoplay = true
 
 [connection signal="navigation_finished" from="NavigationAgent3D" to="." method="_on_navigation_agent_3d_navigation_finished"]

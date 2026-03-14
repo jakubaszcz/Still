@@ -1,7 +1,8 @@
 extends Item
 
 func _ready():
-	item_name = Item.ItemType.FUSE
+	print("Fuse has been created")
+	item_name = Item.ItemType.KEY
 
 func _physics_process(delta: float) -> void:
 	if not is_on_floor():

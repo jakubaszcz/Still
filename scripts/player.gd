@@ -43,11 +43,19 @@ func _movement():
 
 func _pick_item():
 	if Input.is_action_just_pressed("left_hand") or Input.is_action_just_pressed("right_hand"):
-		var item: Item = _raycast_item()
+		var item: Object = _raycast_item()
 		if Input.is_action_just_pressed("left_hand"):
-			_hand(HandType.LEFT, item)
+			if item is Item:
+				_hand(HandType.LEFT, item)
+			elif item and item.is_in_group("door"):
+				if left_hand_item and left_hand_item.item_name == Item.ItemType.KEY:
+					item._door()
 		elif Input.is_action_just_pressed("right_hand"):
-			_hand(HandType.RIGHT, item)
+			if item is Item:
+				_hand(HandType.RIGHT, item)
+			elif item and item.is_in_group("door"):
+				if right_hand_item and right_hand_item.item_name == Item.ItemType.KEY:
+					item._door()
 			
 func _hand(hand : HandType, item : Item):
 		match hand:
@@ -84,10 +92,12 @@ func _right_hand(item : Item):
 	
 
 
-func _raycast_item() -> Item:
+func _raycast_item() -> Object:
 	if ray.is_colliding():
 		var hit: Object = ray.get_collider()
 		if hit is Item:
+			return hit
+		if hit.is_in_group("door"):
 			return hit
 	return null
 

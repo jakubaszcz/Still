@@ -1,7 +1,7 @@
 extends CharacterBody3D
 class_name Item
 
-enum ItemType { ITEM, FUSE }
+enum ItemType { ITEM, KEY }
 
 @export var item_name: ItemType = ItemType.ITEM
 @export var noise_on_drop: float = 0.5

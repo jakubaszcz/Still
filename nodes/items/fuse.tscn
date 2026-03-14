@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://nym8ba6ktxc7"]
 
 [ext_resource type="Script" uid="uid://dqujlnw73vutc" path="res://scripts/items/fuse.gd" id="1_ou214"]
+[ext_resource type="PackedScene" uid="uid://cww2obkb5k3ri" path="res://assets/Key.glb" id="2_8vy7t"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_bb57o"]
 
@@ -10,4 +11,5 @@ script = ExtResource("1_ou214")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1853402136]
 shape = SubResource("SphereShape3D_bb57o")
 
-[node name="CSGSphere3D" type="CSGSphere3D" parent="CollisionShape3D" unique_id=2008477325]
+[node name="Root Scene" parent="." unique_id=444760705 instance=ExtResource("2_8vy7t")]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0)
