@@ -16,7 +16,7 @@ func _hold(new_parent: Node3D, local_pos: Vector3):
 	
 func _drop(global_pos: Vector3):
 	print("Dropping item" + str(item_name))
-	var world = get_tree().current_scene
+	var world: Node = get_tree().current_scene
 	get_parent().remove_child(self)
 	world.add_child(self)
 	global_position = global_pos
