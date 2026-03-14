@@ -67,6 +67,7 @@ func _pick_item():
 					item._door()
 				else:
 					item._door_locked()
+
 func _hand(hand : HandType, item : Item):
 		match hand:
 			HandType.LEFT:

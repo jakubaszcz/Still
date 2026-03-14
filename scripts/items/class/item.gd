@@ -4,11 +4,10 @@ class_name Item
 enum ItemType { ITEM, KEY }
 
 @export var item_name: ItemType = ItemType.ITEM
-@export var noise_on_drop: float = 0.5
-@export var noise_on_pickup: float = 0.2
 
 func _hold(new_parent: Node3D, local_pos: Vector3):
 	print("Holding item" + str(item_name))
+	GSignals.make_noise.emit(NoiseManager.new(global_position, 0.3))
 	get_parent().remove_child(self)
 	new_parent.add_child(self)
 	position = local_pos

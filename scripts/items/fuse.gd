@@ -1,7 +1,6 @@
 extends Item
 
 func _ready():
-	print("Fuse has been created")
 	item_name = Item.ItemType.KEY
 
 func _physics_process(delta: float) -> void:
