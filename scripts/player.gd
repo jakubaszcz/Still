@@ -50,13 +50,16 @@ func _pick_item():
 			elif item and item.is_in_group("door"):
 				if left_hand_item and left_hand_item.item_name == Item.ItemType.KEY:
 					item._door()
+				else:
+					item._door_locked()
 		elif Input.is_action_just_pressed("right_hand"):
 			if item is Item:
 				_hand(HandType.RIGHT, item)
 			elif item and item.is_in_group("door"):
 				if right_hand_item and right_hand_item.item_name == Item.ItemType.KEY:
 					item._door()
-			
+				else:
+					item._door_locked()
 func _hand(hand : HandType, item : Item):
 		match hand:
 			HandType.LEFT:
@@ -74,7 +77,7 @@ func _left_hand(item : Item):
 		HandState.EMPTY:
 			if item:
 				left_hand_item = item
-				left_hand_item._hold(camera, left_hand_position)
+				left_hand_item._hold(body, left_hand_position)
 				left_hand_state = HandState.HOLD
 
 func _right_hand(item : Item):
@@ -87,7 +90,7 @@ func _right_hand(item : Item):
 		HandState.EMPTY:
 			if item:
 				right_hand_item = item
-				right_hand_item._hold(camera, right_hand_position)
+				right_hand_item._hold(body, right_hand_position)
 				right_hand_state = HandState.HOLD
 	
 

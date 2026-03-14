@@ -4,7 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://bp1dm7dhirfys" path="res://nodes/player_interface.tscn" id="2_bms3g"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_bms3g"]
-radius = 5.0
+radius = 4.277506
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_bms3g"]
 
@@ -15,7 +15,7 @@ script = ExtResource("1_u63mc")
 use_collision = true
 
 [node name="OmniLight3D" type="OmniLight3D" parent="Body" unique_id=1377367238]
-light_energy = 5.0
+light_energy = 0.2
 light_indirect_energy = 5.0
 light_volumetric_fog_energy = 5.0
 light_size = 0.8
