@@ -4,6 +4,8 @@ extends CharacterBody3D
 
 @onready var detection_range : float = 10.0
 
+var invistigate_noise : bool = false
+
 func _ready() -> void:
 	add_to_group("monster")
 	
@@ -19,6 +21,7 @@ func _ready() -> void:
 func _on_make_noise(noise: NoiseManager) -> void:
 	if global_position.distance_to(noise.position) < detection_range * noise.intensity:
 		navigation_agent_3d.target_position = noise.position
+		invistigate_noise = true
 	else:
 		pass
 
@@ -47,10 +50,12 @@ func _physics_process(delta: float) -> void:
 	move_and_slide()
 
 func _on_navigation_agent_3d_navigation_finished() -> void:
+	if invistigate_noise:
+		invistigate_noise = false
 	_generate_position()
 
 
 func _on_area_3d_body_entered(body: Node3D) -> void:
-	if body.is_in_group("player"):
+	if body.is_in_group("player") and invistigate_noise:
 		print("Player has been detected")
 		GSignals.game_over.emit(GameOverManager.new(GameOverManager.GameOverState.LOSE))
