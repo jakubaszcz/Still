@@ -22,6 +22,7 @@ var camera_rotation_x: float = 0.0
 
 func _ready():
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
+	add_to_group("player")
 
 func _mouse_movement(event):
 	if event is InputEventMouseMotion and Input.get_mouse_mode() == Input.MOUSE_MODE_CAPTURED:
@@ -45,13 +46,13 @@ func _movement():
 	
 	if input:
 		_make_noise()
-		
+
 
 func _pick_item():
 	if Input.is_action_just_pressed("left_hand") or Input.is_action_just_pressed("right_hand"):
 		var item: Object = _raycast_item()
 		if Input.is_action_just_pressed("left_hand"):
-			if item is Item:
+			if item is Item or item == null:
 				_hand(HandType.LEFT, item)
 			elif item and item.is_in_group("door"):
 				if left_hand_item and left_hand_item.item_name == Item.ItemType.KEY:
@@ -59,7 +60,7 @@ func _pick_item():
 				else:
 					item._door_locked()
 		elif Input.is_action_just_pressed("right_hand"):
-			if item is Item:
+			if item is Item or item == null:
 				_hand(HandType.RIGHT, item)
 			elif item and item.is_in_group("door"):
 				if right_hand_item and right_hand_item.item_name == Item.ItemType.KEY:
