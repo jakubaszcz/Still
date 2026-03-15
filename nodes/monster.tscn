@@ -1,7 +1,6 @@
 [gd_scene format=3 uid="uid://1b56ietgkpoa"]
 
 [ext_resource type="Script" uid="uid://bd6b6iyayegpd" path="res://scripts/monster.gd" id="1_srrws"]
-[ext_resource type="AudioStream" uid="uid://dlm6l2csegyuc" path="res://sounds/heartbeat.mp3" id="2_ux2sb"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_hbfoo"]
 
@@ -22,12 +21,6 @@ debug_enabled = true
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=26484289]
 mesh = SubResource("CapsuleMesh_srrws")
-
-[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="." unique_id=658957405]
-stream = ExtResource("2_ux2sb")
-unit_size = 5.0
-autoplay = true
-max_distance = 15.0
 
 [node name="Area3D" type="Area3D" parent="." unique_id=140638492]
 

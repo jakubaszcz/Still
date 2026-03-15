@@ -3,8 +3,12 @@
 [ext_resource type="Script" uid="uid://bi17we1f34n16" path="res://scripts/player.gd" id="1_u63mc"]
 [ext_resource type="PackedScene" uid="uid://bp1dm7dhirfys" path="res://nodes/player_interface.tscn" id="2_bms3g"]
 [ext_resource type="AudioStream" uid="uid://blarm605jw0ft" path="res://sounds/universfield-horror-background-atmosphere-025-499631.mp3" id="3_me0cc"]
+[ext_resource type="AudioStream" uid="uid://dlm6l2csegyuc" path="res://sounds/heartbeat.mp3" id="4_hqdnm"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_bms3g"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_me0cc"]
+radius = 3.8118522
 
 [node name="Player" type="CharacterBody3D" unique_id=1420670030]
 script = ExtResource("1_u63mc")
@@ -32,3 +36,14 @@ shape = SubResource("CapsuleShape3D_bms3g")
 stream = ExtResource("3_me0cc")
 volume_db = -80.0
 autoplay = true
+
+[node name="Area3D" type="Area3D" parent="." unique_id=1964720426]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D" unique_id=216258311]
+shape = SubResource("SphereShape3D_me0cc")
+
+[node name="Heartbeat" type="AudioStreamPlayer3D" parent="." unique_id=1188715968]
+stream = ExtResource("4_hqdnm")
+
+[connection signal="body_entered" from="Area3D" to="." method="_on_area_3d_body_entered"]
+[connection signal="body_exited" from="Area3D" to="." method="_on_area_3d_body_exited"]
