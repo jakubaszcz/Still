@@ -1,6 +1,6 @@
 extends CharacterBody3D
 
-@export var speed: int = 14
+@export var speed: int = 6
 @onready var body: CSGCylinder3D = $Body
 @onready var sensivity: float = 0.002
 @onready var camera: Camera3D = $Camera3D
@@ -13,6 +13,8 @@ enum HandType { LEFT, RIGHT }
 @onready var left_hand_state : HandState = HandState.EMPTY
 @onready var right_hand_position : Vector3 = Vector3(1.0, -0.5, -1)
 @onready var right_hand_state : HandState = HandState.EMPTY
+
+@onready var footstep_sound: AudioStreamPlayer3D = $Footstep
 
 @onready var heartbeat_sound: AudioStreamPlayer3D = $Heartbeat
 var monster : Node3D = null
@@ -53,7 +55,11 @@ func _movement():
 	
 	if input:
 		_make_noise()
-
+		if not footstep_sound.is_playing():
+			footstep_sound.play()
+	else:
+		if footstep_sound.is_playing():
+			footstep_sound.stop()
 
 func _pick_item():
 	if Input.is_action_just_pressed("left_hand") or Input.is_action_just_pressed("right_hand"):

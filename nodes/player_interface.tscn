@@ -25,5 +25,6 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="Crosshair" type="Sprite2D" parent="CrosshairCenter" unique_id=182533851]
-scale = Vector2(5, 5)
+modulate = Color(1, 1, 1, 0.654902)
+scale = Vector2(2, 2)
 texture = SubResource("CanvasTexture_wgdwj")

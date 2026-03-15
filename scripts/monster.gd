@@ -11,6 +11,8 @@ func _ready() -> void:
 	
 	GSignals.make_noise.connect(_on_make_noise)
 	
+	navigation_agent_3d.max_speed = 1.0
+	
 	navigation_agent_3d.path_desired_distance = 1.0
 	
 	navigation_agent_3d.target_desired_distance = 1.5 

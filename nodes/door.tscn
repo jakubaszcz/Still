@@ -1,0 +1,24 @@
+[gd_scene format=3 uid="uid://c4jvx4glbgl2"]
+
+[ext_resource type="Script" uid="uid://cuqvkaqcx2y5p" path="res://scripts/door.gd" id="1_847em"]
+[ext_resource type="PackedScene" uid="uid://dmfns8l18gket" path="res://assets/door/Doorway.glb" id="1_nmmve"]
+[ext_resource type="AudioStream" uid="uid://bvwevs42ns35d" path="res://sounds/sfx/door_locked.wav" id="3_1nagr"]
+[ext_resource type="AudioStream" uid="uid://ce0n1yavuyqai" path="res://sounds/sfx/door_unlocked.mp3" id="4_lfe66"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_847em"]
+size = Vector3(0.5440674, 0.982666, 0.26171875)
+
+[node name="Door" type="CharacterBody3D" unique_id=645919801]
+script = ExtResource("1_847em")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1833981150]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.23715806, 0.5219388, 0)
+shape = SubResource("BoxShape3D_847em")
+
+[node name="Doorway" parent="." unique_id=1049548213 instance=ExtResource("1_nmmve")]
+
+[node name="Door_Locked" type="AudioStreamPlayer3D" parent="." unique_id=1822987743]
+stream = ExtResource("3_1nagr")
+
+[node name="Door_Unlocked" type="AudioStreamPlayer3D" parent="." unique_id=85594253]
+stream = ExtResource("4_lfe66")

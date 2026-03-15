@@ -7,21 +7,15 @@
 [ext_resource type="PackedScene" uid="uid://c4jvx4glbgl2" path="res://nodes/door.tscn" id="4_lbhrr"]
 [ext_resource type="AudioStream" uid="uid://dprcaauh8wxnt" path="res://sounds/sfx/death.wav" id="6_p57ef"]
 
-[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_lnu2h"]
-sky_top_color = Color(0, 0, 0, 1)
-sky_horizon_color = Color(0, 0, 0, 1)
-sky_energy_multiplier = 53.95
-ground_bottom_color = Color(0, 0, 0, 1)
-ground_horizon_color = Color(0, 0, 0, 1)
-
-[sub_resource type="Sky" id="Sky_lbhrr"]
-sky_material = SubResource("ProceduralSkyMaterial_lnu2h")
+[sub_resource type="Sky" id="Sky_p57ef"]
 
 [sub_resource type="Environment" id="Environment_iywne"]
 background_mode = 2
-sky = SubResource("Sky_lbhrr")
-tonemap_mode = 2
+sky = SubResource("Sky_p57ef")
 glow_enabled = true
+adjustment_enabled = true
+adjustment_brightness = 0.3
+adjustment_saturation = 0.5
 
 [sub_resource type="NavigationMesh" id="NavigationMesh_lnu2h"]
 vertices = PackedVector3Array(-16.75, 1, -16.775818, -16.75, 1, 16.974182, 16.75, 1, 16.974182, 16.75, 1, -16.775818)
@@ -88,4 +82,4 @@ size = Vector3(35, 1, 35)
 
 [node name="Death" type="AudioStreamPlayer3D" parent="." unique_id=1557636341]
 stream = ExtResource("6_p57ef")
-volume_db = -13.55
+volume_db = -10.0
