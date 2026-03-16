@@ -17,7 +17,7 @@ config/icon="res://icon.svg"
 
 [autoload]
 
-GSignals="*uid://dkw82u471itxm"
+GSignals="*res://scripts/signals.gd"
 
 [input]
 
