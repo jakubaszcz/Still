@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://dqujlnw73vutc" path="res://scripts/items/fuse.gd" id="1_ou214"]
 [ext_resource type="PackedScene" uid="uid://cww2obkb5k3ri" path="res://assets/key/Key.glb" id="2_8vy7t"]
 [ext_resource type="AudioStream" uid="uid://ciyi85owambjb" path="res://sounds/sfx/drop_key.mp3" id="3_51wnb"]
-[ext_resource type="AudioStream" uid="uid://c320f2rfr40i" path="res://sounds/sfx/pick_key.mp3" id="4_si6rt"]
+[ext_resource type="AudioStream" uid="uid://d2pg4d7ntxxbr" path="res://sounds/sfx/freesound_community-money-pickup-2-89563.mp3" id="4_si6rt"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_bb57o"]
 

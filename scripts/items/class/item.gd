@@ -20,6 +20,7 @@ func _hold(new_parent: Node3D, local_pos: Vector3):
 func _drop(global_pos: Vector3):
 	print("Dropping item" + str(item_name))
 	drop_sound.play()
+	GSignals.make_noise.emit(NoiseManager.new(global_position, 0.5))
 	var world: Node = get_tree().current_scene
 	get_parent().remove_child(self)
 	world.add_child(self)
