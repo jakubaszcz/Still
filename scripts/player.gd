@@ -17,6 +17,14 @@ enum HandType { LEFT, RIGHT }
 @onready var footstep_sound: AudioStreamPlayer3D = $Footstep
 
 @onready var heartbeat_sound: AudioStreamPlayer3D = $Heartbeat
+@onready var noise: FastNoiseLite = FastNoiseLite.new()
+
+var monster : Node3D = null
+
+var shake_intensity: float = 0.0
+var shake_speed: float = 25.0
+var noise_i: float = 0.0
+var shake_tween: Tween
 
 var left_hand_item : Item = null
 var right_hand_item : Item = null
@@ -28,6 +36,8 @@ var camera_rotation_x: float = 0.0
 func _ready():
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 	add_to_group("player")
+	noise.seed = randi()
+	noise.frequency = 0.5
 
 func _mouse_movement(event):
 	if event is InputEventMouseMotion and Input.get_mouse_mode() == Input.MOUSE_MODE_CAPTURED:
@@ -125,20 +135,44 @@ func _physics_process(delta: float) -> void:
 	
 	_movement()
 	_pick_item()
+	_apply_shake(delta)
 	
 	if not is_on_floor():
 		velocity += get_gravity() * delta
 	
 	move_and_slide()
 
+func _apply_shake(delta: float):
+	if shake_intensity > 0:
+		noise_i += delta * shake_speed
+		var shake_offset: Vector3 = Vector3(
+			noise.get_noise_1d(noise_i) * shake_intensity,
+			noise.get_noise_1d(noise_i + 25) * shake_intensity,
+			0.0
+		)
+		camera.h_offset = shake_offset.x
+		camera.v_offset = shake_offset.y
+	else:
+		camera.h_offset = 0
+		camera.v_offset = 0
+
 func _on_area_3d_body_entered(body: Node3D) -> void:
 	if body.is_in_group("monster"):
+		monster = body
 		if not heartbeat_sound.playing:
-			print("playe heartbeat")
 			heartbeat_sound.play()
+			if shake_tween:
+				shake_tween.kill()
+			shake_tween = create_tween()
+			shake_tween.tween_property(self, "shake_intensity", 0.2, 2.0).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_IN_OUT)
 
 
 func _on_area_3d_body_exited(body: Node3D) -> void:
 	if body.is_in_group("monster"):
+		monster = null
 		if heartbeat_sound.playing:
 			heartbeat_sound.stop()
+			if shake_tween:
+				shake_tween.kill()
+			shake_tween = create_tween()
+			shake_tween.tween_property(self, "shake_intensity", 0.0, 2.0).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_IN_OUT)

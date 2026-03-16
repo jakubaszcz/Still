@@ -3,10 +3,14 @@ class_name Item
 
 enum ItemType { ITEM, KEY }
 
+@onready var pick_sound : AudioStreamPlayer3D = $Pick
+@onready var drop_sound : AudioStreamPlayer3D = $Drop
+
 @export var item_name: ItemType = ItemType.ITEM
 
 func _hold(new_parent: Node3D, local_pos: Vector3):
 	print("Holding item" + str(item_name))
+	pick_sound.play()
 	GSignals.make_noise.emit(NoiseManager.new(global_position, 0.3))
 	get_parent().remove_child(self)
 	new_parent.add_child(self)
@@ -15,6 +19,7 @@ func _hold(new_parent: Node3D, local_pos: Vector3):
 	
 func _drop(global_pos: Vector3):
 	print("Dropping item" + str(item_name))
+	drop_sound.play()
 	var world: Node = get_tree().current_scene
 	get_parent().remove_child(self)
 	world.add_child(self)

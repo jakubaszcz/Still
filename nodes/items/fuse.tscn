@@ -1,7 +1,9 @@
 [gd_scene format=3 uid="uid://nym8ba6ktxc7"]
 
 [ext_resource type="Script" uid="uid://dqujlnw73vutc" path="res://scripts/items/fuse.gd" id="1_ou214"]
-[ext_resource type="PackedScene" uid="uid://cww2obkb5k3ri" path="res://assets/Key.glb" id="2_8vy7t"]
+[ext_resource type="PackedScene" uid="uid://cww2obkb5k3ri" path="res://assets/key/Key.glb" id="2_8vy7t"]
+[ext_resource type="AudioStream" uid="uid://ciyi85owambjb" path="res://sounds/sfx/drop_key.mp3" id="3_51wnb"]
+[ext_resource type="AudioStream" uid="uid://c320f2rfr40i" path="res://sounds/sfx/pick_key.mp3" id="4_si6rt"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_bb57o"]
 
@@ -13,3 +15,9 @@ shape = SubResource("SphereShape3D_bb57o")
 
 [node name="Root Scene" parent="." unique_id=444760705 instance=ExtResource("2_8vy7t")]
 transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0)
+
+[node name="Drop" type="AudioStreamPlayer3D" parent="." unique_id=440295506]
+stream = ExtResource("3_51wnb")
+
+[node name="Pick" type="AudioStreamPlayer3D" parent="." unique_id=2075855729]
+stream = ExtResource("4_si6rt")

@@ -19,7 +19,6 @@
 background_mode = 2
 sky = SubResource("Sky_p57ef")
 ambient_light_source = 2
-ambient_light_color = Color(0.080783345, 0.080783345, 0.080783345, 1)
 fog_light_energy = 16.85
 adjustment_enabled = true
 adjustment_brightness = 0.3
