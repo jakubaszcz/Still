@@ -17,10 +17,6 @@ enum HandType { LEFT, RIGHT }
 @onready var footstep_sound: AudioStreamPlayer3D = $Footstep
 
 @onready var heartbeat_sound: AudioStreamPlayer3D = $Heartbeat
-var monster : Node3D = null
-
-var heartbeat_max_distance : float = 15.0 
-var heartbeat_min_distance : float = 2.0
 
 var left_hand_item : Item = null
 var right_hand_item : Item = null
@@ -129,32 +125,20 @@ func _physics_process(delta: float) -> void:
 	
 	_movement()
 	_pick_item()
-	_heartbeat(delta)
 	
 	if not is_on_floor():
 		velocity += get_gravity() * delta
 	
 	move_and_slide()
 
-func _heartbeat(delta: float):
-	if monster:
-		var dist: float = global_position.distance_to(monster.global_position)
-		var intensity: float = remap(dist, heartbeat_max_distance, heartbeat_min_distance, 0.0, 1.0)
-		intensity = clamp(intensity, 0.0, 1.0)
-		var target_db: float = remap(intensity, 0.0, 1.0, -60.0, 0.0)
-		heartbeat_sound.volume_db = lerp(heartbeat_sound.volume_db, target_db, delta * 5.0)
-		if not heartbeat_sound.playing:
-			heartbeat_sound.play()
-	else:
-		heartbeat_sound.volume_db = lerp(heartbeat_sound.volume_db, -60.0, delta * 2.0)
-		if heartbeat_sound.volume_db <= -55.0:
-			heartbeat_sound.stop()
-
 func _on_area_3d_body_entered(body: Node3D) -> void:
 	if body.is_in_group("monster"):
-		monster = body
+		if not heartbeat_sound.playing:
+			print("playe heartbeat")
+			heartbeat_sound.play()
 
 
 func _on_area_3d_body_exited(body: Node3D) -> void:
 	if body.is_in_group("monster"):
-		monster = null
+		if heartbeat_sound.playing:
+			heartbeat_sound.stop()

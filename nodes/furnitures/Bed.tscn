@@ -1,0 +1,14 @@
+[gd_scene format=3 uid="uid://b8eaoewrichu"]
+
+[ext_resource type="PackedScene" uid="uid://c8kffqc0fyr4g" path="res://assets/furnitures/Bunk Bed.glb" id="1_asoqg"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_xdp4g"]
+size = Vector3(1.8940735, 3.0081482, 4.065979)
+
+[node name="Bed" type="CharacterBody3D" unique_id=1316601514]
+
+[node name="Root Scene" parent="." unique_id=586153032 instance=ExtResource("1_asoqg")]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1676510149]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.067733765, 1.5120087, -0.0025939941)
+shape = SubResource("BoxShape3D_xdp4g")

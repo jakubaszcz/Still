@@ -54,6 +54,7 @@ func _physics_process(delta: float) -> void:
 func _on_navigation_agent_3d_navigation_finished() -> void:
 	if invistigate_noise:
 		invistigate_noise = false
+	await get_tree().create_timer(2.0).timeout
 	_generate_position()
 
 

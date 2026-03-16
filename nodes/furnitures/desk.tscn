@@ -1,0 +1,15 @@
+[gd_scene format=3 uid="uid://dvdt43o4cw256"]
+
+[ext_resource type="PackedScene" uid="uid://cq1ql4tlwwggr" path="res://assets/furnitures/Desk.glb" id="1_s5hfr"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_8hd18"]
+size = Vector3(1.723175, 1.048706, 0.7910156)
+
+[node name="Desk" type="CharacterBody3D" unique_id=105771931]
+
+[node name="Root Scene" parent="." unique_id=50321443 instance=ExtResource("1_s5hfr")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.19065535, 0, 0.23744512)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1397489704]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.22395325, 0.42806733, 0.18652344)
+shape = SubResource("BoxShape3D_8hd18")
