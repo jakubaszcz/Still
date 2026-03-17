@@ -23,6 +23,7 @@ enum HandType { LEFT, RIGHT }
 @onready var right_hand_state : HandState = HandState.EMPTY
 
 @onready var footstep_sound: AudioStreamPlayer3D = $Footstep
+@onready var background_music: AudioStreamPlayer3D = $AudioStreamPlayer3D
 
 @onready var heartbeat_sound: AudioStreamPlayer3D = $Heartbeat
 @onready var noise: FastNoiseLite = FastNoiseLite.new()
@@ -165,6 +166,7 @@ func _physics_process(delta: float) -> void:
 	
 	_movement()
 	_pick_item()
+	_update_monster_proximity(delta)
 	_apply_shake(delta)
 	
 	if is_running:
@@ -198,23 +200,50 @@ func _apply_shake(delta: float):
 		camera.h_offset = 0
 		camera.v_offset = 0
 
+func _update_monster_proximity(_delta: float):
+	if monster:
+		var distance: float = global_position.distance_to(monster.global_position)
+		var max_distance: float = 13.0
+		var proximity: float = 1.0 - clamp(distance / max_distance, 0.0, 1.0)
+		
+		shake_intensity = lerp(0.05, 0.4, proximity)
+		shake_speed = lerp(15.0, 60.0, proximity)
+		
+		background_music.volume_db = lerp(-20.0, 10.0, proximity)
+		
+		heartbeat_sound.volume_db = lerp(-30.0, 15.0, proximity)
+	else:
+		pass
+
 func _on_area_3d_body_entered(body: Node3D) -> void:
 	if body.is_in_group("monster"):
 		monster = body
 		if not heartbeat_sound.playing:
 			heartbeat_sound.play()
-			if shake_tween:
-				shake_tween.kill()
-			shake_tween = create_tween()
-			shake_tween.tween_property(self, "shake_intensity", 0.2, 2.0).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_IN_OUT)
-
+		if not background_music.playing:
+			background_music.play()
+		
+		if shake_tween:
+			shake_tween.kill()
+		if background_music.get_meta("volume_tween", null):
+			background_music.get_meta("volume_tween").kill()
+			
+		shake_tween = create_tween()
+		# On commence doucement l'intensité, le reste est géré par la proximité
+		shake_tween.tween_property(self, "shake_intensity", 0.05, 1.0)
 
 func _on_area_3d_body_exited(body: Node3D) -> void:
 	if body.is_in_group("monster"):
 		monster = null
-		if heartbeat_sound.playing:
-			heartbeat_sound.stop()
-			if shake_tween:
-				shake_tween.kill()
-			shake_tween = create_tween()
-			shake_tween.tween_property(self, "shake_intensity", 0.0, 2.0).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_IN_OUT)
+		
+		if shake_tween:
+			shake_tween.kill()
+		shake_tween = create_tween().set_parallel(true)
+		shake_tween.tween_property(self, "shake_intensity", 0.0, 2.0)
+		shake_tween.tween_property(background_music, "volume_db", -40.0, 3.0)
+		shake_tween.tween_property(heartbeat_sound, "volume_db", -40.0, 2.0)
+		
+		shake_tween.finished.connect(func(): 
+			if monster == null:
+				heartbeat_sound.stop()
+		)
