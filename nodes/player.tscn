@@ -2,9 +2,9 @@
 
 [ext_resource type="Script" uid="uid://bi17we1f34n16" path="res://scripts/player.gd" id="1_u63mc"]
 [ext_resource type="PackedScene" uid="uid://bp1dm7dhirfys" path="res://nodes/player_interface.tscn" id="2_bms3g"]
-[ext_resource type="AudioStream" uid="uid://blarm605jw0ft" path="res://sounds/sfx/universfield-horror-background-atmosphere-025-499631.mp3" id="3_me0cc"]
+[ext_resource type="AudioStream" uid="uid://bn2klokhkfr2h" path="res://sounds/horror_01_drone_01.ogg" id="3_7lbay"]
 [ext_resource type="AudioStream" uid="uid://cu1icafgmfxbk" path="res://sounds/sfx/freesoundsxx-tense-loop-271270.mp3" id="4_7lbay"]
-[ext_resource type="AudioStream" uid="uid://7f3hangfkof" path="res://sounds/sfx/footstep.mp3" id="5_7lbay"]
+[ext_resource type="AudioStream" uid="uid://cb0w4obx1bi25" path="res://sounds/footstep.mp3" id="5_7lbay"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_bms3g"]
 
@@ -38,7 +38,7 @@ target_position = Vector3(0, 0, -3)
 shape = SubResource("CapsuleShape3D_bms3g")
 
 [node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="." unique_id=1298558725]
-stream = ExtResource("3_me0cc")
+stream = ExtResource("3_7lbay")
 autoplay = true
 
 [node name="Area3D" type="Area3D" parent="." unique_id=1964720426]

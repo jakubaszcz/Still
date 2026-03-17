@@ -1,6 +1,14 @@
 extends CharacterBody3D
 
-@export var speed: int = 6
+@export var walk_speed: int = 3
+@export var run_speed: int = 6
+
+var is_running: bool = false
+var can_run: bool = true
+
+var stamina_timer: float = 0.0
+var stamina_max: float = 3.0
+
 @onready var body: CSGCylinder3D = $Body
 @onready var sensivity: float = 0.002
 @onready var camera: Camera3D = $Camera3D
@@ -50,12 +58,34 @@ func _input(event):
 	_mouse_movement(event)
 
 func _make_noise():
-	GSignals.make_noise.emit(NoiseManager.new(global_position, 0.6))
+	var intensity: float = 0.0
+	var walk_intensity: float = 1.0
+	var run_intensity: float = 3.0
+
+	if can_run and is_running:
+		intensity = run_intensity
+	else:
+		intensity = walk_intensity
+	
+	GSignals.make_noise.emit(NoiseManager.new(global_position, intensity))
 
 func _movement():
 	var input: Vector2 = Input.get_vector("move_left", "move_right", "move_forward", "move_backward")
 	var movement_dir: Vector3 = transform.basis * Vector3(input.x, 0, input.y)
-		
+	var speed: float = walk_speed
+	
+	
+	if Input.is_action_pressed("run") and can_run and input:
+		footstep_sound.volume_db = 10.0
+		footstep_sound.pitch_scale = 1.2
+		speed = run_speed
+		is_running = true
+	else:
+		footstep_sound.volume_db = -5.0
+		footstep_sound.pitch_scale = 1.0
+		is_running = false
+		speed = walk_speed
+	
 	velocity.x = movement_dir.x * speed
 	velocity.z = movement_dir.z * speed
 	
@@ -137,6 +167,18 @@ func _physics_process(delta: float) -> void:
 	_pick_item()
 	_apply_shake(delta)
 	
+	if is_running:
+		stamina_timer += delta
+		if stamina_timer >= stamina_max:
+			can_run = false
+	else:
+		stamina_timer -= delta
+		if stamina_timer <= 0:
+			stamina_timer = 0
+			can_run = true
+	
+	stamina_timer = clamp(stamina_timer, 0.0, stamina_max)
+	
 	if not is_on_floor():
 		velocity += get_gravity() * delta
 	
@@ -145,7 +187,7 @@ func _physics_process(delta: float) -> void:
 func _apply_shake(delta: float):
 	if shake_intensity > 0:
 		noise_i += delta * shake_speed
-		var shake_offset: Vector3 = Vector3(
+		var shake_offset: Vector3 = Vector3(   
 			noise.get_noise_1d(noise_i) * shake_intensity,
 			noise.get_noise_1d(noise_i + 25) * shake_intensity,
 			0.0
