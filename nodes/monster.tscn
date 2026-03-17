@@ -1,25 +1,38 @@
 [gd_scene format=3 uid="uid://1b56ietgkpoa"]
 
 [ext_resource type="Script" uid="uid://bd6b6iyayegpd" path="res://scripts/monster.gd" id="1_srrws"]
-
-[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_hbfoo"]
-
-[sub_resource type="CapsuleMesh" id="CapsuleMesh_srrws"]
+[ext_resource type="PackedScene" uid="uid://csm5b8g1j17qo" path="res://assets/monster/ CARCAXIS.fbx" id="2_ui22v"]
+[ext_resource type="Texture2D" uid="uid://c11b6l8486ms5" path="res://assets/monster/face mutant radition.png" id="3_71hdr"]
+[ext_resource type="Texture2D" uid="uid://bgxh7tqtyuans" path="res://assets/monster/body mutant mosnter.png" id="4_ixhsu"]
+[ext_resource type="Texture2D" uid="uid://cv7eap2k2ta10" path="res://assets/monster/pierna mutant monster.png" id="5_kewr8"]
+[ext_resource type="Texture2D" uid="uid://c6tp242v643nd" path="res://assets/monster/brazos mutant mosnter.png" id="6_3rpgr"]
+[ext_resource type="Texture2D" uid="uid://ccfv6wy1apkte" path="res://assets/monster/pantalones mutant.png" id="7_qbuml"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_ux2sb"]
 radius = 0.8408203
 height = 2.1914063
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_ux2sb"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ql274"]
+albedo_texture = ExtResource("3_71hdr")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_a5ad8"]
+albedo_texture = ExtResource("4_ixhsu")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_n24ho"]
+albedo_texture = ExtResource("5_kewr8")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_1yibx"]
+albedo_texture = ExtResource("6_3rpgr")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_v77d8"]
+albedo_texture = ExtResource("7_qbuml")
+
 [node name="Monster" type="CharacterBody3D" unique_id=1563080593]
 script = ExtResource("1_srrws")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=462151167]
-shape = SubResource("CapsuleShape3D_hbfoo")
-
 [node name="NavigationAgent3D" type="NavigationAgent3D" parent="." unique_id=605078738]
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=26484289]
-mesh = SubResource("CapsuleMesh_srrws")
 
 [node name="Area3D" type="Area3D" parent="." unique_id=140638492]
 
@@ -27,5 +40,94 @@ mesh = SubResource("CapsuleMesh_srrws")
 transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0, 0)
 shape = SubResource("CapsuleShape3D_ux2sb")
 
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=2050901403]
+shape = SubResource("BoxShape3D_ux2sb")
+
+[node name="CARCAXIS" parent="." unique_id=876399618 instance=ExtResource("2_ui22v")]
+transform = Transform3D(-2.3, 0, -2.0107238e-07, 0, 2.3, 0, 2.0107238e-07, 0, -2.3, 0, 0, 0)
+
+[node name="Skeleton3D" parent="CARCAXIS/Armature_009" parent_id_path=PackedInt32Array(876399618, 921597403) index="0" unique_id=930335414]
+bones/1/position = Vector3(8.6736174e-19, 0.0750162, 0.006405512)
+bones/1/rotation = Quaternion(0.042578068, 0, 0, 0.9990931)
+bones/1/scale = Vector3(1, 0.9999999, 0.9999999)
+bones/2/position = Vector3(2.9802322e-10, 0.08783737, 6.448955e-09)
+bones/2/rotation = Quaternion(2.5982485e-08, -6.325991e-11, -1.4843925e-09, 1)
+bones/2/scale = Vector3(1, 1, 1)
+bones/3/position = Vector3(-2.9802327e-10, 0.10038561, -1.1272692e-08)
+bones/3/rotation = Quaternion(-3.3406053e-08, 6.3259904e-11, 1.4843926e-09, 1)
+bones/3/scale = Vector3(1, 1, 1)
+bones/4/position = Vector3(-2.6020852e-18, 0.11293375, 6.299662e-10)
+bones/4/rotation = Quaternion(-0.04257806, 6.6267216e-20, -1.03316275e-16, 0.9990932)
+bones/4/scale = Vector3(1, 0.99999994, 1.0000001)
+bones/5/position = Vector3(-2.9802322e-10, 0.08039271, 0.008943548)
+bones/5/rotation = Quaternion(-4.9922164e-09, -5.040636e-25, 3.1172762e-24, 1)
+bones/5/scale = Vector3(1, 1, 1)
+bones/6/position = Vector3(0, 0.20022433, 0.02227461)
+bones/6/rotation = Quaternion(1.7763568e-15, -7.703718e-34, 1.1373733e-24, 1)
+bones/6/scale = Vector3(1, 1, 1)
+bones/8/position = Vector3(0.054147292, 0.08356475, 0.0024047983)
+bones/8/rotation = Quaternion(0.6196634, 0.3556613, -0.5929429, 0.37140414)
+bones/8/scale = Vector3(1.0000002, 0.99999994, 1)
+bones/9/position = Vector3(8.9181384e-10, 0.12034343, -1.6431649e-08)
+bones/9/rotation = Quaternion(0.30450156, -0.094678804, 0.030433316, 0.9473059)
+bones/9/scale = Vector3(1, 1, 1.0000001)
+bones/10/position = Vector3(-1.8595055e-09, 0.21562886, 5.0092403e-08)
+bones/10/rotation = Quaternion(0.16136941, 0.017014993, 0.1034714, 0.9813073)
+bones/10/scale = Vector3(0.9999999, 1.0000001, 0.9999998)
+bones/11/position = Vector3(-7.3353825e-09, 0.2635637, -6.553202e-08)
+bones/11/rotation = Quaternion(-2.146039e-09, 1.1536285e-07, -9.9426725e-09, 1)
+bones/11/scale = Vector3(1.0000001, 0.9999998, 1.0000001)
+bones/13/position = Vector3(-0.05414729, 0.083582245, 0.0026092625)
+bones/13/rotation = Quaternion(0.6207291, -0.35503522, 0.5917047, 0.37219754)
+bones/13/scale = Vector3(1.0000001, 1.0000001, 1)
+bones/14/position = Vector3(3.2444314e-10, 0.12034344, -1.0445212e-08)
+bones/14/rotation = Quaternion(0.30453107, 0.10174406, -0.032735985, 0.94648683)
+bones/14/scale = Vector3(1.0000001, 1, 1)
+bones/15/position = Vector3(-2.952308e-09, 0.2157734, 3.3783063e-08)
+bones/15/rotation = Quaternion(0.16194712, -0.015135801, -0.09181953, 0.9824018)
+bones/15/scale = Vector3(1, 0.9999999, 0.9999999)
+bones/16/position = Vector3(1.3224463e-08, 0.26283225, -3.7392095e-08)
+bones/16/rotation = Quaternion(-2.5576572e-09, -4.7354135e-07, -3.169781e-08, 1)
+bones/16/scale = Vector3(1, 1, 1.0000001)
+bones/18/position = Vector3(0.07773376, -0.04163399, 0.025371091)
+bones/18/rotation = Quaternion(-0.0018326915, -0.025226256, 0.9970527, -0.07243009)
+bones/18/scale = Vector3(0.99999714, 0.99999994, 0.9999995)
+bones/19/position = Vector3(-9.820049e-09, 0.38777775, 9.682129e-09)
+bones/19/rotation = Quaternion(-0.049000226, 0.0007914322, -0.01613983, 0.998668)
+bones/19/scale = Vector3(0.9999999, 0.99999976, 1)
+bones/20/position = Vector3(-2.929827e-08, 0.39827803, -1.48252495e-08)
+bones/20/rotation = Quaternion(0.52936, 0.06159555, -0.038574606, 0.8452787)
+bones/20/scale = Vector3(0.99999994, 0.9999999, 1.0000001)
+bones/21/position = Vector3(3.8651393e-08, 0.110508114, 2.4981097e-07)
+bones/21/rotation = Quaternion(0.2862347, -0.09660028, 0.029019272, 0.95283574)
+bones/21/scale = Vector3(0.99999994, 1, 0.99999994)
+bones/22/position = Vector3(-3.0044056e-08, 0.03914911, -1.5740594e-07)
+bones/22/rotation = Quaternion(-1.1377615e-08, -4.1132168e-07, 2.3852988e-07, 1)
+bones/22/scale = Vector3(0.99999994, 1, 1.0000001)
+bones/24/position = Vector3(-0.07773378, -0.04163399, 0.027499815)
+bones/24/rotation = Quaternion(0.0015641053, -0.021533333, 0.99713755, 0.072460786)
+bones/24/scale = Vector3(1.0000062, 1.0000001, 1.0000005)
+bones/25/position = Vector3(1.3548515e-08, 0.38764578, 1.3478901e-08)
+bones/25/rotation = Quaternion(-0.05037143, -0.00081544515, 0.016110176, 0.9986003)
+bones/25/scale = Vector3(0.99999994, 0.9999999, 0.99999994)
+bones/26/position = Vector3(1.3846642e-08, 0.39800832, -2.0222625e-08)
+bones/26/rotation = Quaternion(0.5128203, -0.06720852, 0.040314592, 0.85491115)
+bones/26/scale = Vector3(1.0000001, 1.0000001, 1.0000001)
+bones/27/position = Vector3(-2.3194112e-08, 0.10537338, 6.709748e-08)
+bones/27/rotation = Quaternion(0.3034288, 0.10137855, -0.032486152, 0.94688857)
+bones/27/scale = Vector3(1, 0.99999994, 1)
+bones/28/position = Vector3(-7.2245063e-09, 0.041199088, -1.5514519e-07)
+bones/28/rotation = Quaternion(4.568141e-08, -4.2162094e-07, -2.3115248e-07, 1)
+bones/28/scale = Vector3(1, 1.0000001, 1.0000001)
+
+[node name="Cube_010" parent="CARCAXIS/Armature_009/Skeleton3D" index="0" unique_id=1980522805]
+surface_material_override/0 = SubResource("StandardMaterial3D_ql274")
+surface_material_override/1 = SubResource("StandardMaterial3D_a5ad8")
+surface_material_override/2 = SubResource("StandardMaterial3D_n24ho")
+surface_material_override/3 = SubResource("StandardMaterial3D_1yibx")
+surface_material_override/4 = SubResource("StandardMaterial3D_v77d8")
+
 [connection signal="navigation_finished" from="NavigationAgent3D" to="." method="_on_navigation_agent_3d_navigation_finished"]
 [connection signal="body_entered" from="Area3D" to="." method="_on_area_3d_body_entered"]
+
+[editable path="CARCAXIS"]

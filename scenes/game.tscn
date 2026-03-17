@@ -44,7 +44,7 @@ shadow_enabled = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15.572091, 1.8548841, -15.946389)
 
 [node name="Monster" parent="." unique_id=1563080593 instance=ExtResource("2_yqjtg")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.6506281, 1.6629984, 14.535168)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.6506281, 0.5140575, 14.535168)
 
 [node name="Fuse" parent="." unique_id=1921144796 instance=ExtResource("3_lnu2h")]
 transform = Transform3D(0.6467898, 0, -0.7626684, 0, 1, 0, 0.7626684, 0, 0.6467898, 20.335867, 2.0929384, 4.639089)

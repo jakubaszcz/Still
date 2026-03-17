@@ -2,6 +2,10 @@ extends CharacterBody3D
 
 @onready var navigation_agent_3d: NavigationAgent3D = $NavigationAgent3D
 
+@onready var animation_player: AnimationPlayer = $CARCAXIS/AnimationPlayer
+
+@onready var speed : float = 1.0
+
 @onready var detection_range : float = 10.0
 
 var invistigate_noise : bool = false
@@ -11,9 +15,10 @@ func _ready() -> void:
 	
 	GSignals.make_noise.connect(_on_make_noise)
 	
-	navigation_agent_3d.max_speed = 1.0
 	
 	navigation_agent_3d.path_desired_distance = 1.0
+	
+	navigation_agent_3d.max_speed = 0.3
 	
 	navigation_agent_3d.target_desired_distance = 1.5 
 	
@@ -38,10 +43,18 @@ func _generate_position() -> void:
 
 func _physics_process(delta: float) -> void:
 	if navigation_agent_3d.is_navigation_finished():
+		animation_player.play("Armature_009|Armature_009|mixamo_com|Layer0")
 		return
 
+	animation_player.play("Armature_009|Armature_003|mixamo_com|Layer0")
 	var destination: Vector3 = navigation_agent_3d.get_next_path_position()
 	var direction: Vector3 = global_position.direction_to(destination)
+	direction.y = 0
+	direction = direction.normalized()
+
+	if direction != Vector3.ZERO:
+		var target_basis = Basis.looking_at(direction)
+		basis = basis.slerp(target_basis, delta * 5.0)
 
 	velocity.x = direction.x * 5.0
 	velocity.z = direction.z * 5.0
