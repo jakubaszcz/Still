@@ -34,6 +34,7 @@ var shake_intensity: float = 0.0
 var shake_speed: float = 25.0
 var noise_i: float = 0.0
 var shake_tween: Tween
+var mouse_captured: bool = true
 
 var left_hand_item : Item = null
 var right_hand_item : Item = null
@@ -43,7 +44,7 @@ var target_velocity: Vector3 = Vector3.ZERO
 var camera_rotation_x: float = 0.0
 
 func _ready():
-	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
+	capture_mouse()
 	add_to_group("player")
 	noise.seed = randi()
 	noise.frequency = 0.5
@@ -56,6 +57,12 @@ func _mouse_movement(event):
 		camera.rotation.x = camera_rotation_x
 
 func _input(event):
+	
+	if Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT):
+		capture_mouse()
+	if Input.is_key_pressed(KEY_ESCAPE):
+		release_mouse()
+
 	_mouse_movement(event)
 
 func _make_noise():
@@ -247,3 +254,11 @@ func _on_area_3d_body_exited(body: Node3D) -> void:
 			if monster == null:
 				heartbeat_sound.stop()
 		)
+
+func capture_mouse() -> void:
+	mouse_captured = true
+	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
+
+func release_mouse() -> void:
+	mouse_captured = false
+	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
